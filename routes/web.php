@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LinkController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,3 +37,6 @@ Route::post('register', [RegisterController::class,'register']);
 // Auth::routes();
 
 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+
+Route::post('/shorten', [LinkController::class, 'performShorten']);
+Route::post('/shorten_result', [LinkController::class, 'performShorten']);

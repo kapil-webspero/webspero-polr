@@ -25,6 +25,7 @@ class CreateLinksTable extends Migration
             $table->boolean('is_disabled')->default(0);
             $table->boolean('is_custom')->default(0);
             $table->boolean('is_api')->default(0);
+            $table->string('long_url_hash', 10)->nullable();
             $table->timestamps();
         });
     }

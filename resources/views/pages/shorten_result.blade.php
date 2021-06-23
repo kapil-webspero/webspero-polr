@@ -34,16 +34,24 @@
             <div class="col-md-12 m-5">
               <div class="card">
                 <div class="card-body">
-                  <form method='POST' action='/shorten' role='form'>
-                      @csrf
-                      <div class="form-group">
-                          <input type='url' autocomplete='off' name="link-url" class="form-control form-control-lg form-control-primary" placeholder="http://">
-                      </div>
-                      <div class="form-group text-center">
-                          <input type="submit" class="btn btn-info" name="button" id="shorten" value="Shorten">
-                          <button type="button" class="btn btn-warning" name="button" disabled> Link Options</button>
-                      </div>
-                  </form>
+                  <div class="text-center">
+                    <h3>Shortened URL</h3>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group input-group-button">
+                                <input type='text' class='result-box form-control form-control-primary' value='{{$short_url}}' id='short_url' />
+                                <div class="input-group-append">
+                                    <button id='clipboard-copy' data-clipboard-target='#short_url' data-toggle='tooltip' data-placement='bottom' data-title='Copied!' class="btn btn-primary" ><i class='ik ik-clipboard'  aria-hidden='true' title='Copy to clipboard'></i></button>
+                                </div>
+                            </div>
+                            <a id="generate-qr-code" class='btn btn-primary'>Generate QR Code</a>
+                            <a href='/' class='btn btn-info'>Shorten another</a>
+                        </div>
+                        <div class="col-sm-12 mt-10">
+                          <div class="qr-code-container" ></div>
+                        </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -63,6 +71,8 @@
 		    </div>
 		</div>
 		<script src="{{ asset('theme/all.js') }}"></script>
-
+    <script src='js/qrcode.min.js'></script>
+    <script src='js/clipboard.min.js'></script>
+    <script src='js/shorten_result.js'></script>
     </body>
 </html>
