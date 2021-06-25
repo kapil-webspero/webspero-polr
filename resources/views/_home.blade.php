@@ -25,7 +25,9 @@
     </head>
 
     <body>
-      @include('include.navbar')
+      {{--
+        @include('include.navbar')
+        --}}
 		<div class="container">
 		    <div class="row justify-content-center">
 		        <div class="col-md-12 m-5 text-center">
@@ -52,9 +54,15 @@
 		        <div class="col-md-12 m-5 mt-0 text-center">
 		            <h6>Hello <span class="text-danger">Artisan</span>,</h6>
 		            <h1 class="m-5">This is your homepage!</h1>
-		            <a href="{{url('admin-login')}}" class="btn btn-success">Go to Admin</a>
-		            <a href="http://radmin.rakibhstu.com/docs/" class="btn btn-primary">Docs</a>
-		            <a href="https://documenter.getpostman.com/view/11223504/Szmh1vqc?version=latest" class="btn btn-danger">API Endpoint</a>
+                <a href="{{ url('login') }}"class="btn btn-success">  <i class="ik ik-unlock"></i>{{ __('Login')}}</a>
+                <a href="{{ url('signup') }}"class="btn btn-primary"><i class="ik ik-users"></i>{{ __('Registration')}}</a>
+                <a href="{{url('admin-login')}}" class="btn btn-danger">Go to Admin</a>
+
+                {{--
+                  <a href="{{url('admin-login')}}" class="btn btn-success">Go to Admin</a>
+                  <a href="http://radmin.rakibhstu.com/docs/" class="btn btn-primary">Docs</a>
+                  <a href="https://documenter.getpostman.com/view/11223504/Szmh1vqc?version=latest" class="btn btn-danger">API Endpoint</a>
+                  --}}
 		            <br>
 		            <br>
 		            <br>

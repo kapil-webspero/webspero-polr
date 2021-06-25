@@ -41,7 +41,7 @@ Route::get('logout', [AuthController::class,'logout']);
 
 Route::get('signup', [RegisterController::class, function() {
   return view('pages.signup');
-}])->name('login');
+}]);
 
 Route::post('register', [RegisterController::class,'register'])->name('register');
 

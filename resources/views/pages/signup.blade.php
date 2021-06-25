@@ -45,16 +45,31 @@
                             <form action="{{url('register')}}" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="name" class="form-control" placeholder="Name" name="name" value="{{ old('name') }}" required>
+                                    <input type="name" class="form-control" placeholder="Username" name="username" value="{{ old('username') }}" required>
                                     <i class="ik ik-user"></i>
+                                    @error('username')
+                                    <span class="invalid-feedback" style="display:block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <input type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}" required>
                                     <i class="fa fa-envelope"></i>
+                                    @error('username')
+                                    <span class="invalid-feedback" style="display:block" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control" placeholder="Password" name="password" required>
                                     <i class="ik ik-lock"></i>
+                                    @error('password')
+                                    <span class="invalid-feedback" style="display:block" role="alert">
+                                        <strong>{{$message}}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control" placeholder="Confirm Password" name="password_confirmation" required>
@@ -86,5 +101,28 @@
         <script src="{{ asset('theme/plugins/bootstrap/dist/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('theme/plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js') }}"></script>
         <script src="{{ asset('theme/plugins/screenfull/dist/screenfull.js') }}"></script>
+
+        <script src="{{ asset('theme/toastr.min.js')}}"></script>
+        <script>
+            @if (Session::has('info'))
+                toastr["info"](`{{ str_replace('`', '\`', session('info')) }}`, "Info")
+            @endif
+            @if (Session::has('error'))
+                toastr["error"](`{{str_replace('`', '\`', session('error')) }}`, "Error")
+            @endif
+            @if (Session::has('warning'))
+                toastr["warning"](`{{ str_replace('`', '\`', session('warning')) }}`, "Warning")
+            @endif
+            @if (Session::has('success'))
+                toastr["success"](`{{ str_replace('`', '\`', session('success')) }}`, "Success")
+            @endif
+
+            @if (count($errors) > 0)
+                // Handle Lumen validation errors
+                @foreach ($errors->all() as $error)
+                    toastr["error"](`{{ str_replace('`', '\`', $error) }}`, "Error")
+                @endforeach
+            @endif
+        </script>
     </body>
 </html>

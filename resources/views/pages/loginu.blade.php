@@ -45,10 +45,10 @@
                             <form method="POST" action="{{ route('login') }}">
                             @csrf
                                 <div class="form-group">
-                                    <input id="email" type="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                    <input id="username" type="text" placeholder="Username" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
                                     <i class="ik ik-user"></i>
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
+                                    @error('username')
+                                        <span class="invalid-feedback" style="display:block" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -57,10 +57,15 @@
                                     <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                                     <i class="ik ik-lock"></i>
                                     @error('password')
-                                    <span class="invalid-feedback" role="alert">
+                                    <span class="invalid-feedback" style="display:block" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                                    @enderror
+                                    @if($errors->any())
+                                      <span class="invalid-feedback" style="display:block" role="alert">
+                                          <strong>{{$errors->first()}}</strong>
+                                      </span>
+                                    @endif
                                 </div>
                                 <div class="row">
                                     <div class="col text-left">
