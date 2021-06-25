@@ -28,6 +28,6 @@ class HomeController extends Controller
         $users = User::get();
         $links = Link::get();
         // return view('home');
-        return view('pages.dashboard', ['users' => $users]);
+        return view('pages.dashboard', ['users' => $users, 'links' => $links]);
     }
 }
