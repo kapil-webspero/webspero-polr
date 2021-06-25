@@ -13,6 +13,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
 
         <script src="{{ asset('theme/js/app.js') }}"></script>
+        <link href="/css/toastr.min.css" rel="stylesheet">
 
         <!-- themekit admin template asstes -->
         <link rel="stylesheet" href="{{ asset('theme/all.css') }}">
@@ -24,6 +25,7 @@
     </head>
 
     <body>
+      @include('include.navbar')
 		<div class="container">
 		    <div class="row justify-content-center">
 		        <div class="col-md-12 m-5 text-center">
@@ -50,7 +52,7 @@
 		        <div class="col-md-12 m-5 mt-0 text-center">
 		            <h6>Hello <span class="text-danger">Artisan</span>,</h6>
 		            <h1 class="m-5">This is your homepage!</h1>
-		            <a href="{{url('login')}}" class="btn btn-success">Go to Admin</a>
+		            <a href="{{url('admin-login')}}" class="btn btn-success">Go to Admin</a>
 		            <a href="http://radmin.rakibhstu.com/docs/" class="btn btn-primary">Docs</a>
 		            <a href="https://documenter.getpostman.com/view/11223504/Szmh1vqc?version=latest" class="btn btn-danger">API Endpoint</a>
 		            <br>
@@ -63,6 +65,27 @@
 		    </div>
 		</div>
 		<script src="{{ asset('theme/all.js') }}"></script>
+    <script src="/js/toastr.min.js"></script>
+    <script>
+        @if (Session::has('info'))
+            toastr["info"](`{{ str_replace('`', '\`', session('info')) }}`, "Info")
+        @endif
+        @if (Session::has('error'))
+            toastr["error"](`{{str_replace('`', '\`', session('error')) }}`, "Error")
+        @endif
+        @if (Session::has('warning'))
+            toastr["warning"](`{{ str_replace('`', '\`', session('warning')) }}`, "Warning")
+        @endif
+        @if (Session::has('success'))
+            toastr["success"](`{{ str_replace('`', '\`', session('success')) }}`, "Success")
+        @endif
 
+        @if (count($errors) > 0)
+            // Handle Lumen validation errors
+            @foreach ($errors->all() as $error)
+                toastr["error"](`{{ str_replace('`', '\`', $error) }}`, "Error")
+            @endforeach
+        @endif
+    </script>
     </body>
 </html>

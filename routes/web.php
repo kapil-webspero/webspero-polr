@@ -28,15 +28,27 @@ Route::get('/', function () {
 // Auth::routes();
 
 
-Route::get('login', [LoginController::class,'showLoginForm'])->name('login');
+Route::get('admin-login', [LoginController::class, function() {
+  return view('pages.login');
+}]);
 // Route::post('login', [LoginController::class,'login']);
+Route::get('login', [AuthController::class, function() {
+  return view('pages.loginu');
+}])->name('login');
+
 Route::post('login', [AuthController::class,'performLogin']);
 Route::get('logout', [AuthController::class,'logout']);
-Route::post('register', [RegisterController::class,'register']);
+
+Route::get('signup', [RegisterController::class, function() {
+  return view('pages.signup');
+}])->name('login');
+
+Route::post('register', [RegisterController::class,'register'])->name('register');
+
 
 // Auth::routes();
 
 Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 Route::post('/shorten', [LinkController::class, 'performShorten']);
-Route::post('/shorten_result', [LinkController::class, 'performShorten']);
+// Route::post('/shorten_result', [LinkController::class, 'performShorten']);
