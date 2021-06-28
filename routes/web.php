@@ -52,3 +52,8 @@ Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 Route::post('/shorten', [LinkController::class, 'performShorten']);
 // Route::post('/shorten_result', [LinkController::class, 'performShorten']);
+
+Route::get('/api-login', function(){
+  return view('pages.api.login');
+});
+Route::post('/api-login', [App\Http\Controllers\Api\AuthController::class, 'login'])->name('api-login');
