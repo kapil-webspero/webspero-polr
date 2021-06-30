@@ -70,7 +70,7 @@
 		        </div>
             <div class="col-md-12 mt-0 text-center">
               <a href="{{'api-login'}}" class="btn btn-danger">API Login</a>
-              <a href="" class="btn btn-success">API Registration</a>
+              <a href="{{'api-signup'}}" class="btn btn-success">API Registration</a>
             </div>
 
 		        </div>

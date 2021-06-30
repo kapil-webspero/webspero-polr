@@ -27,8 +27,8 @@
                         <tr>
                             <td>{{$link->short_url}}</td>
                             <td>{{$link->clicks}}</td>
-                            <td>{{$link->created_at}}</td>
-                            <td>{{$link->creator}}</td>
+                            <td>{{date('d-m-Y',strtotime($link->created_at))}}</td>
+                            <td>{{ucfirst($link->creator)}}</td>
                             <td>
                                 @if($link->is_disabled)
                                   <div class="p-status bg-red"></div>

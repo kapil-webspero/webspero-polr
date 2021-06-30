@@ -15,7 +15,7 @@
             {{$user->username}}
             <div >
               <h6>{{ $user->email}}</h6>
-              <span class="status deactive text-mute">{{$user->created_at}}</span>
+              <span class="status deactive text-mute">{{date('d-m-Y',strtotime($user->created_at))}}</span>
             </div>
           </div>
       @empty

@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -23,11 +23,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::get();
-        $links = Link::get();
-        // return view('home');
+        // $users = User::get();
+        // $links = Link::get();
+        $users = '';
+        if ($request->session()->has('users')) {
+            $users = session('users');
+        }
+
+        $links = Link::orderBy('created_at', 'DESC')->limit(5)->get();
         return view('pages.dashboard', ['users' => $users, 'links' => $links]);
     }
 }

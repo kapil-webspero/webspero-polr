@@ -48,12 +48,23 @@ Route::post('register', [RegisterController::class,'register'])->name('register'
 
 // Auth::routes();
 
-Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+// Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 Route::post('/shorten', [LinkController::class, 'performShorten']);
 // Route::post('/shorten_result', [LinkController::class, 'performShorten']);
 
-Route::get('/api-login', function(){
-  return view('pages.api.login');
+Route::get('api-login', function(){
+    return view('pages.api.login');
 });
-Route::post('/api-login', [App\Http\Controllers\Api\AuthController::class, 'login'])->name('api-login');
+
+Route::get('api-signup', function() {
+  return view('pages.api.signup');
+})->name('api-signup');
+
+Route::post('api-login', [App\Http\Controllers\Api\AuthController::class, 'login'])->name('api-login');
+Route::post('api-register', [App\Http\Controllers\Api\AuthController::class, 'register']);
+
+Route::group(['middleware' => 'usersession'], function () {
+    Route::get('admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
+    Route::get('api-logout', [App\Http\Controllers\Api\AuthController::class, 'logout']);
+});
